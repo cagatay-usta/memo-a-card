@@ -1,11 +1,10 @@
 import DisplayCards from "./utils";
 import "./index.css";
 
-
 function App() {
   return (
     <div>
-      <DisplayCards />
+      <DisplayCards number="7" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const images = require.context("./images/cards", true);
 const imageList = images.keys().map((image) => images(image));
@@ -12,13 +12,29 @@ function shuffleCards(array) {
   return array;
 }
 
+function DisplayCards({ number }) {
+  const pickedCards = shuffleCards(imageList).slice(0, number);
+  const [cards, setCards] = useState(shuffleCards(pickedCards));
 
-function DisplayCards() {
-  const shuffledCards = shuffleCards(imageList);
+  function handleClick() {
+    setCards((prevState) => {
+      const newCards = [...shuffleCards(prevState)];
+      return newCards;
+    });
+  }
+
   return (
     <div>
-      {shuffledCards.map((image, index) => (
-        <img key={index} src={image} alt={`card-${index}`} className="card" />
+      {cards.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`card-${index}`}
+          className="card"
+          onClick={() => {
+            handleClick();
+          }}
+        />
       ))}
     </div>
   );
