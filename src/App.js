@@ -5,7 +5,7 @@ import DisplayCards from "./displayCards";
 import "./index.css";
 
 function App() {
-  const [number, setNumber] = useState(7);
+  const [number, setNumber] = useState(17);
   const [cards, setCards] = useState(shuffleCards(initializeCards(number)));
   const [pickedCards, setPickedCards] = useState([]);
   const [scores, setScores] = useState({ score: 0, best: 0 });

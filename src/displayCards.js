@@ -1,9 +1,8 @@
 import React from "react";
 
 function DisplayCards({ cards, handleClick }) {
-  
   return (
-    <div>
+    <div className="cards-container">
       {cards.map((card, index) => (
         <img
           key={index}
