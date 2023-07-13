@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ScoreBoard from "./scoreBoard";
 import { shuffleCards, imageList } from "./utils";
 import DisplayCards from "./displayCards";
 import "./index.css";
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div>
+      <ScoreBoard score={score.score} best={score.best} />
       <DisplayCards cards={cards} handleClick={handleClick} />
     </div>
   );
