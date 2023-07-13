@@ -9,9 +9,18 @@ function App() {
   const numberedCards = shuffleCards(imageList).slice(0, number);
   const [cards, setCards] = useState(shuffleCards(numberedCards));
   const [pickedCards, setPickedCards] = useState([]);
-  const [score, setScore] = useState({ score: 0, best: 0 });
+  const [scores, setScores] = useState({ score: 0, best: 0 });
 
-  function handleClick() {
+  function handleClick(e) {
+    const selectedCard = e.target.getAttribute("data-picked");
+    if (pickedCards.some((card) => selectedCard === card)) {
+      setScores((prevState) => ({ ...prevState, score: 0 }));
+      setPickedCards([]);
+    } else {
+      setPickedCards(pickedCards.concat(selectedCard));
+      console.log(pickedCards);
+      setScores((prevState) => ({ ...prevState, score: scores.score + 1 }));
+    }
     setCards((prevState) => {
       const newCards = [...shuffleCards(prevState)];
       return newCards;
@@ -28,7 +37,7 @@ function App() {
 
   return (
     <div>
-      <ScoreBoard score={score.score} best={score.best} />
+      <ScoreBoard score={scores.score} best={scores.best} />
       <DisplayCards cards={cards} handleClick={handleClick} />
     </div>
   );
