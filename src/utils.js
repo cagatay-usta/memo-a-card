@@ -10,4 +10,8 @@ function shuffleCards(array) {
   return array;
 }
 
-export { shuffleCards, imageList };
+function initializeCards(number) {
+  return shuffleCards(imageList).slice(0, number)
+}
+
+export { shuffleCards, initializeCards };
