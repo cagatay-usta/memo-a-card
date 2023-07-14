@@ -53,7 +53,7 @@ function App() {
 
   if (number === 0) {
     return (
-      <>
+      <div className="number-selection">
         <label htmlFor="number-input">Select the number of cards</label>
         <input
           type="number"
@@ -66,15 +66,13 @@ function App() {
         <button type="button" onClick={() => setNumber(inputNumber)}>
           Select
         </button>
-      </>
+      </div>
     );
   } else {
     return (
       <>
-        <div>
-          <ScoreBoard score={scores.score} best={scores.best} />
-          <DisplayCards cards={cards} handleClick={handleClick} />
-        </div>
+        <ScoreBoard score={scores.score} best={scores.best} />
+        <DisplayCards cards={cards} handleClick={handleClick} />
       </>
     );
   }

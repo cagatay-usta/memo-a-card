@@ -5,7 +5,28 @@
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(100px, auto));
   gap: 1rem;
   padding: 2rem;
+}
+
+.score-board {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding: 2rem;
+}
+
+body, html, #root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.number-selection {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
