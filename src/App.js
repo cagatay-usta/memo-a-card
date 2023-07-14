@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ScoreBoard from "./scoreBoard";
 import { shuffleCards, initializeCards } from "./utils";
 import DisplayCards from "./displayCards";
 import "./index.css";
 
 function App() {
-  const [number, setNumber] = useState(17);
+  const [number, setNumber] = useState(0);
   const [cards, setCards] = useState(shuffleCards(initializeCards(number)));
   const [pickedCards, setPickedCards] = useState([]);
   const [scores, setScores] = useState({ score: 0, best: 0 });
+  const inputElement = useRef();
+  const [inputNumber, setInputNumber] = useState(7);
 
   function handleClick(e) {
     const selectedCard = e.target.getAttribute("data-picked");
@@ -34,28 +36,48 @@ function App() {
 
   // shuffles cards on mount
   useEffect(() => {
-    setCards((prevState) => {
-      const newCards = [...shuffleCards(prevState)];
-      return newCards;
-    });
-  }, []);
+    if (number > 0) {
+      setCards(shuffleCards(initializeCards(number)));
+    }
+  }, [number]);
 
   // check if won
   useEffect(() => {
-    if (scores.score === number) {
+    if (scores.score >= number && number !== 0) {
       window.alert("you won!");
       setScores({ best: scores.score, score: 0 });
-      // replace cards with new ones
-      setCards(shuffleCards(initializeCards(number)));
+      // restart the game by setting the number to 0
+      setNumber(0);
     }
   }, [scores.score, number]);
 
-  return (
-    <div>
-      <ScoreBoard score={scores.score} best={scores.best} />
-      <DisplayCards cards={cards} handleClick={handleClick} />
-    </div>
-  );
+  if (number === 0) {
+    return (
+      <>
+        <label htmlFor="number-input">Select the number of cards</label>
+        <input
+          type="number"
+          placeholder="7"
+          id="number-input"
+          ref={inputElement}
+          value={inputNumber}
+          onChange={(e) => setInputNumber(e.target.value)}
+        />
+        <button type="button" onClick={() => setNumber(inputNumber)}>
+          Select
+        </button>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div>
+          <ScoreBoard score={scores.score} best={scores.best} />
+          <DisplayCards cards={cards} handleClick={handleClick} />
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
