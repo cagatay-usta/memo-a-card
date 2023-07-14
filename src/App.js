@@ -71,7 +71,11 @@ function App() {
   } else {
     return (
       <>
-        <ScoreBoard score={scores.score} best={scores.best} />
+        <div class="title-container">
+          <div className="title">memo-a-card</div>
+          <div className="title-text">don't click the same card twice!</div>
+          <ScoreBoard score={scores.score} best={scores.best} />
+        </div>
         <DisplayCards cards={cards} handleClick={handleClick} />
       </>
     );
