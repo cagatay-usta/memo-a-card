@@ -63,7 +63,7 @@ function App() {
           value={inputNumber}
           onChange={(e) => setInputNumber(e.target.value)}
         />
-        <button type="button" onClick={() => setNumber(inputNumber)}>
+        <button type="button" className="number-input-button" onClick={() => setNumber(inputNumber)}>
           Select
         </button>
       </div>
