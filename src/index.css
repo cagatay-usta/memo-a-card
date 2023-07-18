@@ -36,6 +36,7 @@ body, html, #root {
 #number-input {
   text-align: center;
   padding: .5rem;
+  border-radius: .5rem;
 }
 
 .number-input-button {
@@ -43,4 +44,19 @@ body, html, #root {
   border-radius: 1rem;
   border-style: none;
   background-color: coral;
+  color: white;
+  font-weight: bold;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+
+}
+.title-container {
+  display: flex;
+  flex-direction: column;
 }
